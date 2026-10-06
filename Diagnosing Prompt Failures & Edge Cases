@@ -1,1 +1,52 @@
 
+# WEEK 4: DIAGNOSING PROMPT FAILURES & EDGE CASES
+ 
+print("===== WEEK 4: PROMPT FAILURES & EDGE CASES =====")
+ 
+poor_prompt = "Tell me about Python."
+ 
+improved_prompt = """
+Explain Python programming to a beginner.
+ 
+Requirements:
+1. Give a simple definition.
+2. Mention 3 important features.
+3. Give one simple example.
+4. Use easy English.
+5. Keep the answer under 100 words.
+"""
+ 
+edge_cases = [
+    "",
+    "Explain.",
+    "Explain Python in -50 words.",
+    "Explain Python simply and very technically.",
+    "123456789"
+]
+ 
+print("\n--- POOR PROMPT ---")
+print(poor_prompt)
+print("\nProblem: Prompt is too broad and does not specify the expected output.")
+ 
+print("\n--- IMPROVED PROMPT ---")
+print(improved_prompt)
+ 
+print("\n--- EDGE CASE TESTING ---")
+ 
+for i, prompt in enumerate(edge_cases, start=1):
+    print(f"\nEdge Case {i}: {repr(prompt)}")
+ 
+    if not prompt.strip():
+        print("Issue: Empty prompt")
+    elif len(prompt.split()) < 2:
+        print("Issue: Insufficient information")
+    elif "-50 words" in prompt:
+        print("Issue: Invalid word-count constraint")
+    elif "simply" in prompt and "very technically" in prompt:
+        print("Issue: Conflicting instructions")
+    elif prompt.isdigit():
+        print("Issue: Input does not contain a meaningful instruction")
+    else:
+        print("Prompt is valid")
+ 
+
